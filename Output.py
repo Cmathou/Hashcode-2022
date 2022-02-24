@@ -23,5 +23,6 @@ def writeOutput(fileName, projects, contributors):
             file.write(projects[project].getName()+"\n")
             for contrib in contributors[project]:
                 file.write(contrib.getName()+" ")
+            file.write("\n")
         file.write("\n")
 

@@ -20,6 +20,8 @@ def writeOutput(fileName, projects, contributors):
         file.write(str(len(projects))+"\n")
 
         for project in range(len(projects)):
-            file.write(projects[project]+"\n")
-            file.write(contributors[project]+"\n")
+            file.write(projects[project].getName()+"\n")
+            for contrib in contributors[project]:
+                file.write(contrib.getName()+" ")
+        file.write("\n")
 

@@ -57,7 +57,7 @@ ContribBusy = []
 finProj = []
 finCont = []
 currentDate = 0
-nbFile = 0
+nbFile = 1
 
 listProj, ContribAvail = init(nbFile)
 
@@ -66,4 +66,8 @@ while len(listProj) != 0 :
     finProj, finCont, listProj = updateProj(listProj, ContribBusy, ContribAvail, currentDate, finProj, finCont)
 
     currentDate +=1
+
+writeOutput("a_out.txt", finProj, finCont)
+
+
 

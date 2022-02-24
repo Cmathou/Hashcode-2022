@@ -5,11 +5,7 @@ from Project import *
 inFile = ["a.txt", "b.txt", "c.txt", "d.txt", "e.txt", "f.txt"]
 outFile = ["a_out.txt", "b_out.txt", "c_out.txt", "d_out.txt", "e_out.txt", "f_out.txt"]
 
-""" was
-line 1 : D duration / I intersections / S streets / V cars / F bonus temps
-lines 2-S+1 : B - E (intersections debut fin) / street name / L time
-lines S+2-S+V+1 = P nb streets / P * name of street
-"""
+
 """
 line 1 :                      C n of contributors / P n of projects
 
@@ -74,14 +70,15 @@ class ReadFiles:
 
 
 
-"""T = ReadFiles(0)
+"""
+T = ReadFiles(0)
 for contrib in T.allContrib:
 	print(contrib.getName())
 	print(contrib.getSkills())
 
 for proj in T.allProjects:
 	print(proj.getName())
-	print(proj.getLength())
+	print(type(proj.getLength()))
 	print(proj.getScore())
 	print(proj.getDeadline())
 	print(proj.getRoles())

@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from Contributors import *
 
 class Project:
@@ -26,8 +27,14 @@ class Project:
     def getLength(self):
         return self._length
 
-    def getScore(self):
-        return self._score
+    def getScore(self, actual_day):
+        if (actual_day <= self._deadline):
+            return self._score
+        elif (actual_day >= self._deadline + self._score):
+            return 0
+        else:
+            return self._score - (actual_day - self._deadline)
+            
 
     def getDeadline(self):
         return self._deadline
@@ -42,6 +49,14 @@ class Project:
         self._day = day
         self._contributors = contributors
 
+    def getContributors(self):
+        return self._contributors
+
+    def isStarted(self):
+        return True if (self._day != -1) else False
+
+    def isFinished(self, actual_day):
+        return True if (self._day + self._length <= actual_day and self._day != -1) else False
 
     def searchContributors(self, contributors):
         selected = []
@@ -50,7 +65,10 @@ class Project:
                 if (contributor.getLevel(role) >= self._skills[self._roles.index(role)] and contributor not in selected):
                     selected.append(contributor)
                     break
-        return selected
+        if len(selected) == len(self._roles):
+            return selected
+        else:
+            return []
 
 # c = [Contributor("aaa", ["a"], [2]), Contributor("aba", ["b"], [2]), Contributor("aca", ["c"], [2]), Contributor("ada", ["d"], [2]), Contributor("aea", ["e"], [2])]
 # p = Project("gh", 0, 0, 0, ["d", "c", "e"], [0, 1, 1])

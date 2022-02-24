@@ -27,8 +27,14 @@ class Project:
     def getLength(self):
         return self._length
 
-    def getScore(self):
-        return self._score
+    def getScore(self, actual_day):
+        if (actual_day <= self._deadline):
+            return self._score
+        elif (actual_day >= self._deadline + self._score):
+            return 0
+        else:
+            return self._score - (actual_day - self._deadline)
+            
 
     def getDeadline(self):
         return self._deadline
@@ -42,6 +48,9 @@ class Project:
     def startProject(self, day, contributors):
         self._day = day
         self._contributors = contributors
+
+    def getContributors(self):
+        return self._contributors
 
     def isStarted(self):
         return True if (self._day != -1) else False

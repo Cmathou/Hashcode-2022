@@ -49,12 +49,20 @@ def moveToAvail(CA, CB, listCont):
             CB.remove(toMove)
     pass
 
+def getMiniDate(P, d):
+    mini = 1e10
+    for k in P : 
+        m = k.timeToFinish(d)
+        if m > 0 : 
+            mini = np.min([mini, m])
+
+    return mini
 
 ContribBusy = []
 finProj = []
 finCont = []
 currentDate = 0
-nbFile = 2
+nbFile = 1
 
 listProj, ContribAvail = init(nbFile)
 
@@ -62,9 +70,11 @@ while len(listProj) != 0 :
 
     finProj, finCont, listProj = updateProj(listProj, ContribBusy, ContribAvail, currentDate, finProj, finCont)
 
-    getMiniDate(finProj)
+    val = getMiniDate(finProj, currentDate)
 
-    currentDate +=1
+    currentDate += val
+
+    print(val)
 
 writeOutput("b_out.txt", finProj, finCont)
 

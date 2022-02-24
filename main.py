@@ -40,13 +40,15 @@ def moveToBusy(CA, CB, listCont):
     print(CA, CB)
     for toMove in listCont:
         if toMove in CA:
-            CB.append(CA.pop(toMove))
+            CB.append(toMove)
+            CA.remove(toMove)
     pass
 
 def moveToAvail(CA, CB, listCont):
     for toMove in listCont:
         if toMove in CB:
-            CA.append(CB.pop(toMove))
+            CA.append(toMove)
+            CB.remove(toMove)
     pass
 
 

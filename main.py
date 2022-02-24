@@ -12,12 +12,14 @@ def updateProj(lP, lCB, lCA, day):
     for p in lP :
         if p.isFinished(day):
             ContribToSwitch = p.getContributors()
-            updateContribs(lCB, lCA, ContribToSwitch)
+            moveToAvail(lCB, lCA, ContribToSwitch)
 
 
 
     ######Check if project are still doable and remove those without interest
-
+    for i, p in enumerate(lP) : 
+        if not p.isStarted() and not p.getScore(day):
+            lP = lP[:i] + lP[i+1:]
 
 
     ######Check if new project can begin and attribute contributors

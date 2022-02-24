@@ -4,3 +4,10 @@ from ReadFiles import *
 from Output import *
 
 
+
+currentDate = 0
+
+
+
+
+

@@ -1,54 +1,89 @@
-
+from Contributors import *
+from Project import *
 
 
 inFile = ["a.txt", "b.txt", "c.txt", "d.txt", "e.txt", "f.txt"]
 outFile = ["a_out.txt", "b_out.txt", "c_out.txt", "d_out.txt", "e_out.txt", "f_out.txt"]
 
-"""
+""" was
 line 1 : D duration / I intersections / S streets / V cars / F bonus temps
 lines 2-S+1 : B - E (intersections debut fin) / street name / L time
 lines S+2-S+V+1 = P nb streets / P * name of street
 """
-begin=0
-end=0
-duration=0
-streetsUsed=0
-identity=0
-name="test"
+"""
+line 1 :                      C n of contributors / P n of projects
+
+lines 2:                      NAME1 name / Sn1 n of skills              //
+lines 3 - 3+Sn1 :             S1 skill / Li1 skill level                //  C fois
+line 3+Sn1+1 :                NAME name / Sn n of skills                //
+lines 3+Sn1+2 - 3+Sn1+2+Sn2 : S2 skill / Li2 skill level                //
+
+line N :                      Pn project name / Di days to complete / Si score / Bi best before / Ri n of roles
+lines N+1 - N+Ri+1 :          Xk skill name / Lk level required 
+"""
+
+
 
 class ReadFiles:
-	duration = 0
-	intersectionsNumber = 0
-	streetsNumber = 0
-	carNumber = 0
-	bonus = 0
 
-	streets = {} #{name:[begin, end, duration]}
-	cars = {} #{identity:[streetsUsed]}
-	streetOut = []
 
 	def __init__(self, fileNbr):
-		data = open("problem/" + inFile[fileNbr], "r")
+		data = open(inFile[fileNbr], "r")
 		lines = data.readlines()
 		data.close()
+		currLine = 0
 
-		[self.duration, self.intersectionsNumber, self.streetsNumber, self.carNumber, self.bonus] = [int(i) for i in lines[0].split()]
-		for i in range(self.intersectionsNumber):
-			self.streetOut.append([])
+		self.allContrib = []
+		self.allProjects = []
 
-		for i in lines[1:self.streetsNumber+1]:
-			[begin, end, name, time] = [j for j in i.split()]
+		[C, P] = [int(i) for i in lines[currLine].split()]
 
-			self.streets[name] = [int(begin), int(end), int(time), 0]
-			self.streetOut[int(end)].append(name)
+		for contributor in range(C):
+			currLine+=1
+			[name, Sn] = [i for i in lines[currLine].split()]
+			Sn = int(Sn)
+			skills = []
+			level = []
+			for skill in range(Sn):
+				currLine+=1
+				[skillName, skillLevel] = [i for i in lines[currLine].split()]
+				skills.append(skillName)
+				level.append(int(skillLevel))
 
-		currentId = 0
+			contrib = Contributor(name, skills, level)
+			self.allContrib.append(contrib)
 
-		for i in lines[self.streetsNumber+1:]:
-			number=int(i.split()[0])
+		for project in range(P):
+			currLine+=1
+			[Pn, D, S, B, R] = [i for i in lines[currLine].split()]
+			D=int(D)
+			S=int(S)
+			B=int(B)
+			R=int(R)
+			skills = []
+			level = []
+			for skill in range(R):
+				currLine+=1
+				[skillName, skillLevel] = [i for i in lines[currLine].split()]
+				skills.append(skillName)
+				level.append(int(skillLevel))
 
-			self.cars[currentId]=i.split()[1:]
-			currentId+=1
+			project = Project(Pn, D, S, B, skills, level)
+			self.allProjects.append(project)
 
-	def getStreets(self, intersection):
-		return self.streetOut[intersection]
+
+
+
+"""T = ReadFiles(0)
+for contrib in T.allContrib:
+	print(contrib.getName())
+	print(contrib.getSkills())
+
+for proj in T.allProjects:
+	print(proj.getName())
+	print(proj.getLength())
+	print(proj.getScore())
+	print(proj.getDeadline())
+	print(proj.getRoles())
+	print(proj.getSkills())
+"""

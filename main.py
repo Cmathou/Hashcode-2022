@@ -4,10 +4,58 @@ from ReadFiles import *
 from Output import *
 
 
+def init(lP, CA):
+    pass
+
+def updateProj(lP, lCB, lCA, day):
+    ######Check project finish and release contributors
+    for p in lP :
+        if p.isFinished(day):
+            ContribToSwitch = p.getContributors()
+            updateContribs(lCB, lCA, ContribToSwitch)
+
+
+
+    ######Check if project are still doable and remove those without interest
+
+
+
+    ######Check if new project can begin and attribute contributors
+    for p in lP :
+        if not p.isStarted():
+            listCont = p.chercheContributors(lCA)
+            if len(listCont) != 0 :
+                p.Start(listCont, day)
+                moveToBusy(lCA, lCB, listCont)
+
+
+    pass
+
+def moveToBusy(CA, CB, listCont):
+    pass
+
+def moveToAvail(CA, CB, listCont):
+    pass
+
+
+
+
+listProj = []
+ContribBusy = []
+ContribAvail = []
 
 currentDate = 0
 
+init(listProj, ContribBusy)
 
+
+while len(listProj) != 0 :
+
+    updateProj(listProj, ContribBusy, ContribAvail, currentDate)
+    updateContribs(ContribBusy, ContribAvail)
+
+
+    currentDate +=1
 
 
 

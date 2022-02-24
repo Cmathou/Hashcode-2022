@@ -10,6 +10,9 @@ class Contributor:
     
     def getName(self):
         return self.name
+    
+    def getSkills(self):
+        return self.skills
 
     def getLevel(self, skill):
         if skill in self.skills:

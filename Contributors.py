@@ -6,6 +6,7 @@ class Contributor:
         self.skills = skills
         self.levels = levels
         self.name = name
+        self.available = True
     
     def getName(self):
         return self.name
@@ -22,6 +23,13 @@ class Contributor:
             self.levels.append(0)
         a = np.argwhere([s == skill for s in self.skills])[0][0]  
         self.levels[a] += 1
+    
+    def isAvailable(self):
+        return self.available
+    
+    def attributeProject(self):
+        self.available = False
+
 
 
 # t = Contributor(["C++", "python"], [2,4])

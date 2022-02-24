@@ -75,11 +75,14 @@ class Project:
     def getCont(self, dic):
         selected = []
         for role in self._roles:
+            a = len(selected)
             for c, contributor in enumerate(dic[role]):
                 if (contributor.getLevel(role) >= self._skills[self._roles.index(role)] and contributor not in selected and contributor.isAvailable()):
-                    dic[role][c].attributeProject()
+                    contributor.attributeProject()
                     selected.append(contributor)
                     break
+            if not(a < len(selected)):
+                break
         if len(selected) == len(self._roles):
             return selected, dic
         else:

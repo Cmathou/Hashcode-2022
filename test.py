@@ -16,9 +16,9 @@ class A:
 b = A()
 
 d = {"pilou":[b], "t":[b,b]}
-
+d["pilou"][0].change()
 print(b.geta())
-b.change()
+# b.change()
 print(b.geta())
 
 print(d["pilou"][0].geta())

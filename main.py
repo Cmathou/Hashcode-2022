@@ -4,16 +4,17 @@ from ReadFiles import *
 from Output import *
 
 
-def init(lP, CA):
-    pass
+def init(nbFile):
+    T = ReadFiles(nbFile)
+    return T.allProjects, T.allContrib
 
-def updateProj(lP, lCB, lCA, day):
+def updateProj(lP, lCB, lCA, day, finP, finC):
     ######Check project finish and release contributors
-    for p in lP :
+    for i, p in enumerate(lP) :
         if p.isFinished(day):
             ContribToSwitch = p.getContributors()
             moveToAvail(lCB, lCA, ContribToSwitch)
-
+            lP = lP[:i] + lP[i+1:]
 
 
     ######Check if project are still doable and remove those without interest
@@ -25,13 +26,15 @@ def updateProj(lP, lCB, lCA, day):
     ######Check if new project can begin and attribute contributors
     for p in lP :
         if not p.isStarted():
-            listCont = p.chercheContributors(lCA)
+            listCont = p.searchContributors(lCA)
             if len(listCont) != 0 :
-                p.Start(listCont, day)
+                p.startProject(listCont, day)
                 moveToBusy(lCA, lCB, listCont)
+                finP.append(p)
+                finC.append(listCont)
 
 
-    pass
+    return finP, finC
 
 def moveToBusy(CA, CB, listCont):
     for toMove in listCont:
@@ -48,19 +51,17 @@ def moveToAvail(CA, CB, listCont):
 
 
 
-listProj = []
 ContribBusy = []
-ContribAvail = []
 
 currentDate = 0
+nbFile = 0
 
-init(listProj, ContribBusy)
+listProj, ContribAvail = init(nbFile)
 
 
 while len(listProj) != 0 :
 
-    updateProj(listProj, ContribBusy, ContribAvail, currentDate)
-
+    finProj, finCont = updateProj(listProj, ContribBusy, ContribAvail, currentDate)
 
     currentDate +=1
 

@@ -4,6 +4,17 @@ from ReadFiles import *
 from Output import *
 
 
+def makeDic(contributors):
+    dic = {}
+    for contrib in contributors:
+        for skill in contrib.getSkills():
+            if skill in dic.keys():
+                dic[skill].append(contrib)
+            else:
+                dic[skill] = [contrib]
+    return dic
+
+
 def init(nbFile):
     T = ReadFiles(nbFile)
     return T.allProjects, T.allContrib
@@ -62,9 +73,11 @@ ContribBusy = []
 finProj = []
 finCont = []
 currentDate = 0
-nbFile = 1
+nbFile = 2
 
 listProj, ContribAvail = init(nbFile)
+
+print(makeDic(ContribAvail))
 
 while len(listProj) != 0 :
 
@@ -76,7 +89,7 @@ while len(listProj) != 0 :
 
     print(val)
 
-writeOutput("b_out.txt", finProj, finCont)
+writeOutput("c_out.txt", finProj, finCont)
 
 
 

@@ -18,8 +18,7 @@ def updateProj(lP, lCB, lCA, day, finP, finC):
 
 
     ######Check if project are still doable and remove those without interest
-    for i, p in enumerate(lP) : 
-        if not p.isStarted() and not p.getScore(day):
+        elif not p.isStarted() and not p.getScore(day):
             lP = lP[:i] + lP[i+1:]
 
 
@@ -51,19 +50,19 @@ def moveToAvail(CA, CB, listCont):
     pass
 
 
-
-
 ContribBusy = []
 finProj = []
 finCont = []
 currentDate = 0
-nbFile = 1
+nbFile = 2
 
 listProj, ContribAvail = init(nbFile)
 
 while len(listProj) != 0 :
 
     finProj, finCont, listProj = updateProj(listProj, ContribBusy, ContribAvail, currentDate, finProj, finCont)
+
+    getMiniDate(finProj)
 
     currentDate +=1
 

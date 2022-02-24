@@ -29,6 +29,9 @@ class Contributor:
     
     def attributeProject(self):
         self.available = False
+    
+    def released(self):
+        self.available = True
 
 
 

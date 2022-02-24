@@ -77,7 +77,7 @@ nbFile = 2
 
 listProj, ContribAvail = init(nbFile)
 
-print(makeDic(ContribAvail))
+#print(makeDic(ContribAvail))
 
 while len(listProj) != 0 :
 

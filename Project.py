@@ -70,7 +70,7 @@ class Project:
             return []
 
     def timeToFinish(self, actual_day):
-        return self._deadline-(actual_day-self._day)
+        return self._length-(actual_day-self._day)
 
 # c = [Contributor("aaa", ["a"], [2]), Contributor("aba", ["b"], [2]), Contributor("aca", ["c"], [2]), Contributor("ada", ["d"], [2]), Contributor("aea", ["e"], [2])]
 # p = Project("gh", 0, 0, 0, ["d", "c", "e"], [0, 1, 1])

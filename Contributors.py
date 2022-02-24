@@ -2,10 +2,14 @@ import numpy as np
 
 class Contributor:
 
-    def __init__(self, skills, levels):
+    def __init__(self, name, skills, levels):
         self.skills = skills
         self.levels = levels
+        self.name = name
     
+    def getName(self):
+        return self.name
+
     def getLevel(self, skill):
         if skill in self.skills:
             a = np.argwhere([s == skill for s in self.skills])[0][0]

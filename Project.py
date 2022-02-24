@@ -9,6 +9,9 @@ class Project:
     _roles = []
     _skills = []
 
+    _day = -1
+    _contributors = []
+
     def __init__(self, name, length, score, deadline, roles, skills):
         self._name = name
         self._length = length
@@ -17,25 +20,30 @@ class Project:
         self._roles = roles
         self._skills = skills
 
-    def get_name(self):
+    def getName(self):
         return self._name
 
-    def get_length(self):
+    def getLength(self):
         return self._length
 
-    def get_score(self):
+    def getScore(self):
         return self._score
 
-    def get_deadline(self):
+    def getDeadline(self):
         return self._deadline
 
-    def get_roles(self):
+    def getRoles(self):
         return self._roles
 
-    def get_skills(self):
+    def getSkills(self):
         return self._skills
 
-    def search_contributors(self, contributors):
+    def startProject(self, day, contributors):
+        self._day = day
+        self._contributors = contributors
+
+
+    def searchContributors(self, contributors):
         selected = []
         for role in self._roles:
             for contributor in contributors:

@@ -37,6 +37,7 @@ def updateProj(lP, lCB, lCA, day, finP, finC):
     return finP, finC
 
 def moveToBusy(CA, CB, listCont):
+    print(CA, CB)
     for toMove in listCont:
         if toMove in CA:
             CB.append(CA.pop(toMove))
@@ -52,18 +53,20 @@ def moveToAvail(CA, CB, listCont):
 
 
 ContribBusy = []
-
+finProj = []
+finCont = []
 currentDate = 0
 nbFile = 0
 
 listProj, ContribAvail = init(nbFile)
 
+print(listProj, ContribAvail)
 
 while len(listProj) != 0 :
 
-    finProj, finCont = updateProj(listProj, ContribBusy, ContribAvail, currentDate)
+    finProj, finCont = updateProj(listProj, ContribBusy, ContribAvail, currentDate, finProj, finCont)
 
     currentDate +=1
 
-
+print(finProj, finCont)
 

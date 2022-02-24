@@ -15,7 +15,7 @@ line 3 : contributor 1 / contributor 2 / contributor 3 ...
 """
 
 
-def writeOutput(fileName, projects, contributors)
+def writeOutput(fileName, projects, contributors):
     with open(fileName, "w+") as file:
         file.write(str(len(projects))+"\n")
 

@@ -66,7 +66,7 @@ while len(listProj) != 0 :
 
     currentDate +=1
 
-writeOutput("a_out.txt", finProj, finCont)
+writeOutput("b_out.txt", finProj, finCont)
 
 
 

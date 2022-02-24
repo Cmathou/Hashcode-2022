@@ -28,7 +28,7 @@ def updateProj(lP, lCB, lCA, day, finP, finC):
         if not p.isStarted():
             listCont = p.searchContributors(lCA)
             if len(listCont) != 0 :
-                p.startProject(listCont, day)
+                p.startProject(day, listCont)
                 moveToBusy(lCA, lCB, listCont)
                 finP.append(p)
                 finC.append(listCont)
@@ -37,7 +37,6 @@ def updateProj(lP, lCB, lCA, day, finP, finC):
     return finP, finC
 
 def moveToBusy(CA, CB, listCont):
-    print(CA, CB)
     for toMove in listCont:
         if toMove in CA:
             CB.append(toMove)

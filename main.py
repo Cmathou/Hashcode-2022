@@ -28,9 +28,9 @@ def updateProj(lP, lCB, lCA, day, finP, finC, dic):
         t1 = time.time()
         if p.isFinished(day):
             ContribToSwitch = p.getContributors()
-            for c in ContribToSwitch :
-                c.released()
-            # moveToAvail(lCB, lCA, ContribToSwitch)
+            # for c in ContribToSwitch :
+            #     c.released()
+            moveToAvail(lCB, lCA, ContribToSwitch)
             lP = lP[:i] + lP[i+1:]
             # t2 = time.time()
             # print("Finished: ",  t2-t1)
@@ -47,8 +47,8 @@ def updateProj(lP, lCB, lCA, day, finP, finC, dic):
     for p in lP :
         if not p.isStarted():
             t1 = time.time()
-            # listCont = p.searchContributors(lCA)
-            listCont, dic = p.getCont(dic)
+            listCont = p.searchContributors(lCA)
+            # listCont, dic = p.getCont(dic)
             t11 = time.time()
             # print("Search:", t11-t1)
             if len(listCont) != 0 :
@@ -96,6 +96,7 @@ finProj = []
 finCont = []
 currentDate = 0
 nbFile = 2
+
 
 listProj, ContribAvail = init(nbFile)
 dic = makeDic(ContribAvail)

@@ -27,9 +27,9 @@ class Project:
         return self._length
 
     def getScore(self, actual_day):
-        if (actual_day <= self._deadline):
+        if (actual_day + self._length <= self._deadline):
             return self._score
-        elif (actual_day >= self._deadline + self._score):
+        elif (actual_day + self._length >= self._deadline + self._score):
             return 0
         else:
             return self._score - (actual_day - self._deadline)
@@ -60,10 +60,13 @@ class Project:
     def searchContributors(self, contributors):
         selected = []
         for role in self._roles:
+            a = len(selected)
             for contributor in contributors:
                 if (contributor.getLevel(role) >= self._skills[self._roles.index(role)] and contributor not in selected):
                     selected.append(contributor)
                     break
+            if not(a < len(selected)):
+                break
         if len(selected) == len(self._roles):
             return selected
         else:

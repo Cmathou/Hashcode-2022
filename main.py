@@ -32,9 +32,15 @@ def updateProj(lP, lCB, lCA, day):
     pass
 
 def moveToBusy(CA, CB, listCont):
+	for toMove in listCont:
+		if toMove in CA:
+			CB.append(CA.pop(toMove))
     pass
 
 def moveToAvail(CA, CB, listCont):
+	for toMove in listCont:
+		if toMove in CB:
+			CA.append(CB.pop(toMove))
     pass
 
 

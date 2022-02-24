@@ -60,7 +60,6 @@ init(listProj, ContribBusy)
 while len(listProj) != 0 :
 
     updateProj(listProj, ContribBusy, ContribAvail, currentDate)
-    updateContribs(ContribBusy, ContribAvail)
 
 
     currentDate +=1

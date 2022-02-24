@@ -71,6 +71,20 @@ class Project:
 
     def timeToFinish(self, actual_day):
         return self._length-(actual_day-self._day)
+    
+    def getCont(self, dic):
+        selected = []
+        for role in self._roles:
+            for c, contributor in enumerate(dic[role]):
+                if (contributor.getLevel(role) >= self._skills[self._roles.index(role)] and contributor not in selected and contributor.isAvailable()):
+                    dic[role][c].attributeProject()
+                    selected.append(contributor)
+                    break
+        if len(selected) == len(self._roles):
+            return selected, dic
+        else:
+            return [], dic
+
 
 # c = [Contributor("aaa", ["a"], [2]), Contributor("aba", ["b"], [2]), Contributor("aca", ["c"], [2]), Contributor("ada", ["d"], [2]), Contributor("aea", ["e"], [2])]
 # p = Project("gh", 0, 0, 0, ["d", "c", "e"], [0, 1, 1])

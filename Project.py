@@ -8,9 +8,27 @@ class Project:
     _skills = []
 
     def __init__(self, name, length, score, deadline, roles, skills):
-        _name = name
-        _length = length
-        _score = score
-        _deadline = deadline
-        _roles = roles
-        _skills = skills
+        self._name = name
+        self._length = length
+        self._score = score
+        self._deadline = deadline
+        self._roles = roles
+        self._skills = skills
+
+    def get_name(self):
+        return self._name
+
+    def get_length(self):
+        return self._length
+
+    def get_score(self):
+        return self._score
+
+    def get_deadline(self):
+        return self._deadline
+
+    def get_roles(self):
+        return self._roles
+
+    def get_skills(self):
+        return self._skills

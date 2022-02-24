@@ -37,7 +37,6 @@ def updateProj(lP, lCB, lCA, day, finP, finC):
     return finP, finC
 
 def moveToBusy(CA, CB, listCont):
-    print(CA, CB)
     for toMove in listCont:
         if toMove in CA:
             CB.append(CA.pop(toMove))

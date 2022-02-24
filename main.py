@@ -4,6 +4,17 @@ from ReadFiles import *
 from Output import *
 
 
+def makeDic(contributors):
+    dic = {}
+    for contrib in contributors:
+        for skill in contrib.getSkills():
+            if skill in dic.keys():
+                dic[skill].append(contrib)
+            else:
+                dic[skill] = [contrib]
+    return dic
+
+
 def init(nbFile):
     T = ReadFiles(nbFile)
     return T.allProjects, T.allContrib
@@ -18,8 +29,7 @@ def updateProj(lP, lCB, lCA, day, finP, finC):
 
 
     ######Check if project are still doable and remove those without interest
-    for i, p in enumerate(lP) : 
-        if not p.isStarted() and not p.getScore(day):
+        elif not p.isStarted() and not p.getScore(day):
             lP = lP[:i] + lP[i+1:]
 
 
@@ -50,24 +60,36 @@ def moveToAvail(CA, CB, listCont):
             CB.remove(toMove)
     pass
 
+def getMiniDate(P, d):
+    mini = 1e10
+    for k in P : 
+        m = k.timeToFinish(d)
+        if m > 0 : 
+            mini = np.min([mini, m])
 
-
+    return mini
 
 ContribBusy = []
 finProj = []
 finCont = []
 currentDate = 0
-nbFile = 1
+nbFile = 2
 
 listProj, ContribAvail = init(nbFile)
+
+#print(makeDic(ContribAvail))
 
 while len(listProj) != 0 :
 
     finProj, finCont, listProj = updateProj(listProj, ContribBusy, ContribAvail, currentDate, finProj, finCont)
 
-    currentDate +=1
+    val = getMiniDate(finProj, currentDate)
 
-writeOutput("a_out.txt", finProj, finCont)
+    currentDate += val
+
+    print(val)
+
+writeOutput("c_out.txt", finProj, finCont)
 
 
 

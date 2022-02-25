@@ -62,7 +62,7 @@ class Project:
         for role in self._roles:
             a = len(selected)
             for contributor in contributors:
-                if (contributor.getLevel(role) >= self._skills[self._roles.index(role)] and contributor not in selected):
+                if ((contributor.getLevel(role) >= self._skills[self._roles.index(role)]) and (contributor not in selected) and (not contributor.getHasBeenTried()) ):
                     selected.append(contributor)
                     break
             if not(a < len(selected)):

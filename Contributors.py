@@ -7,6 +7,7 @@ class Contributor:
         self.levels = levels
         self.name = name
         self.available = True
+        self.hasBeenTried = False
     
     def getName(self):
         return self.name
@@ -35,6 +36,15 @@ class Contributor:
     
     def released(self):
         self.available = True
+
+    def getHasBeenTried(self):
+        return self.hasBeenTried
+
+    def tryContributor(self):
+        self.hasBeenTried = True
+
+    def clearHasBeenTried(self):
+        self.hasBeenTried = False
 
 
 
